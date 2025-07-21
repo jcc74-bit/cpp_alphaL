@@ -1,0 +1,38 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+using namespace std;
+
+int main (){
+    ifstream RandWL;
+    RandWL.open("RandomWords.txt"); //fin is used to read from files
+    vector<string>AlphaL;
+    string word;
+    while (RandWL>>word){ //keeps going till no element to add, stops when next row is empty
+        AlphaL.push_back(word); //keeps adding elements to vector
+    }
+    
+    // insertion sort 
+    
+   for (int i=1; i<AlphaL.size(); i++){
+        int j = i;
+        while (j>0 and AlphaL[j-1]>AlphaL[j]){ // vector called AlphaL
+            string temp= AlphaL[j];
+            AlphaL [j]= AlphaL[j-1];
+            AlphaL [j-1]= temp;
+            j=j-1;
+        
+        }
+    }
+    
+    ofstream fout; //putting stuff into file
+    fout.open("Sorted.txt"); //make new file
+    
+    //for loop to go thru all vector to fout into new file
+    for(int i=0; i<AlphaL.size(); i++){
+    fout << AlphaL[i];
+    fout << endl;
+    }
+}
+
+
